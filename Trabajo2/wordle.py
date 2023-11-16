@@ -31,7 +31,7 @@ class Wordle(Frame):
 		self.frame_cuadros.grid_propagate(0)
 		self.frame_cuadros.grid(column=0, row=1, sticky='snew')
 
-		self.frame_control = Frame(self.master, bg='lavender', width=400, height=100)
+		self.frame_control = Frame(self.master, bg='black', width=400, height=100)
 		self.frame_control.grid_propagate(0)
 		self.frame_control.grid(column=0, row=2, sticky='snew')
 
@@ -46,12 +46,12 @@ class Wordle(Frame):
 			textvariable = self.texto,fg='black',highlightcolor= "purple", highlightthickness=2, width=Wordle.nLetras+2)
 		self.palabra.pack(side= 'left', expand=True)
 
-		self.enviar = Button(self.frame_control, text= 'Enviar', bg='gray50',activebackground='green2',
-		 fg = 'white', font=('Arial', 12,'bold'), command=self.verificar_palabra)
+		self.enviar = Button(self.frame_control, text= 'Enviar', bg='SkyBlue1',activebackground='green2',
+		 fg = 'black', font=('Arial', 12,'bold'), command=self.verificar_palabra)
 		self.enviar.pack(side= 'left', expand=True)
 
-		self.limpiar = Button(self.frame_control, text= '⌫', bg='gray50',activebackground='green2',
-		 fg = 'white', font=('Arial', 12,'bold'), width=4, command= lambda:self.texto.set(''))
+		self.limpiar = Button(self.frame_control, text= 'Borrar', bg='tan2',activebackground='green2',
+		 fg = 'black', font=('Arial', 12,'bold'), width=6, command= lambda:self.texto.set(''))
 		self.limpiar.pack(side= 'left', expand=True)
   
 
@@ -116,6 +116,7 @@ def juego():
 
 	ventana = Tk()
 	ventana.config(bg='black')
+	ventana.call('wm', 'iconphoto', ventana._w, PhotoImage(file='logo.png'))
 	ventana.geometry('480x440+40+40')
 	ventana.resizable(0,0)
 	ventana.title('Wordle')
@@ -155,14 +156,23 @@ def inicio(puntaje):
 	titulo.config(font=Font(family="Georgia", size=16), bg="SlateGray2")
 	titulo.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-	#crear frame2
+	#crear frame2b
 	frame2 = Frame(v_principal, width=600, height=230, bg="white")
 	frame2.pack(side=TOP, fill=X)
 
 	# descripcion
 	descripcion = Label(frame2,bg="white",width=45,font=Font(family="Verdana", size=10),
-	text='''Descripción: es un juego de palabras que tiene como \n objetivo adivinar una palabra. \n claves:\n verde: la letra esta en el lugar correcto \n amarillo: la letra esta en otra posicion \n gris: la letra no esta''')
-	descripcion.place(relx=0.01, rely=0.2)
+						text='''✦Descripcion✦ es un juego de palabras que tiene \n como objetivo adivinar una palabra''')
+	descripcion.place(relx=0.01, rely=0.1)
+
+	instrucciones = Label(frame2,bg="white",width=40,font=Font(family="Verdana", size=10),
+						text='''✦Claves✦\n Verde: la letra esta en el lugar correcto \n Amarillo: la letra esta en otra posicion \n Gris: la letra no esta''')
+	instrucciones.place(relx=0.01, rely=0.3)
+
+	info = Label(frame2,bg="white",width=40,font=Font(family="Verdana", size=10),
+						text='''✦Puntuacion✦\nLa puntuacion es deteminada por la cantidad de\n intentos usados para adivinar la palabra''')
+	info.place(relx=0.01, rely=0.7)
+	
 
 	# Tutulo del puntaje
 	titulo_puntaje = Label(frame2, text="Puntuacion total", width=15, font=("Arial", 14))
