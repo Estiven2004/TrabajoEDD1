@@ -149,6 +149,8 @@ def inicio(puntaje):
 
 	v_principal = Tk()
 	v_principal.config(bg='pink')
+	icono = PhotoImage(file='logo.png')
+	v_principal.iconphoto(True, icono)
 	v_principal.geometry('600x400+40+40')
 	v_principal.resizable(0, 0)
 	v_principal.title('Pagina Principal')
