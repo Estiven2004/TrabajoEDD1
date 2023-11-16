@@ -64,15 +64,12 @@ class Wordle(Frame):
 		self.conjunto_palabras = set(archivo.read().splitlines())
 		self.palabra_aleatoria = random.choice(list(self.conjunto_palabras))
  
-
 	def verificar_palabra(self):
 		global puntaje_total
 		global aciertos
 		global fallos
   
 		palabra = self.texto.get().upper()
-
-		#x = list(filter(lambda x: palabra in x, self.conjunto_palabras)) #[i for i in conjunto_palabras if palabra in i]
 		
 		if palabra in self.conjunto_palabras and len(palabra)==Wordle.nLetras:
 			self.alerta['text'] = ''
@@ -99,7 +96,7 @@ class Wordle(Frame):
 				messagebox.showinfo('GANASTE', 'FELICIDADES')
 				self.master.destroy()
 				self.master.quit()
-				puntaje_total += 6-self.fila
+				puntaje_total += 6-self.fila + 1
 				aciertos += 1
 				inicio(puntaje_total)    
 				print("se retorna 1")
@@ -119,7 +116,6 @@ def juego():
 
 	ventana = Tk()
 	ventana.config(bg='black')
-	#ventana.call('wm', 'iconphoto', ventana._w, PhotoImage(file='logo.png'))
 	ventana.geometry('480x440+40+40')
 	ventana.resizable(0,0)
 	ventana.title('Wordle')
@@ -140,11 +136,6 @@ def inicio(puntaje):
 		v_principal.destroy()
 		resultado_juego = juego()
 		print(resultado_juego)
-
-		#if resultado_juego == 1:
-			#puntaje_total += 1  # Aumenta el puntaje total en 1
-			#print("Puntaje total:", puntaje_total)
-			#inicio(puntaje_total) 
 
 
 	v_principal = Tk()
@@ -170,7 +161,7 @@ def inicio(puntaje):
 
 	# descripcion
 	descripcion = Label(frame2,bg="white",width=45,font=Font(family="Verdana", size=10),
-						text='''Descripcion: es un juego de palabras que tiene como \n objetivo adivinar una palabra. \n claves:\n verde: la letra esta en el lugar correcto \n amarillo: la letra esta en otra posicion \n gris: la letra no esta''')
+	text='''Descripción: es un juego de palabras que tiene como \n objetivo adivinar una palabra. \n claves:\n verde: la letra esta en el lugar correcto \n amarillo: la letra esta en otra posicion \n gris: la letra no esta''')
 	descripcion.place(relx=0.01, rely=0.2)
 
 	# Tutulo del puntaje
